@@ -28,6 +28,14 @@ publishing {
 	publications {
 		mavenJava(MavenPublication) {
 			from components.java
+			versionMapping {
+				usage('java-api') {
+					fromResolutionOf('runtimeClasspath')
+				}
+				usage('java-runtime') {
+					fromResolutionResult()
+				}
+			}
 		}
 	}
 	repositories {
@@ -36,7 +44,7 @@ publishing {
 			url = "https://maven.pkg.github.com/dipakg007/atom-common-module"
 			credentials {
 				username = System.getenv("GITHUB_ACTOR")
-				password = System.getenv("GITHUB_TOKEN")
+				password = System.getenv("JAVA_TOKEN")
 			}
 		}
 	}
